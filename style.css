@@ -1,0 +1,145 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+*{ box-sizing:border-box; }
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#121212;
+    color:white;
+}
+
+.app{
+    max-width:500px;
+    margin:auto;
+    padding:20px;
+    padding-bottom:105px;
+}
+
+h1{ text-align:center; margin-top:0; margin-bottom:20px; }
+
+/* PANEL PARA AÑADIR PERSONAJE */
+.panel{ display:flex; flex-direction:column; gap:10px; margin-bottom:15px; }
+
+/* CAMPOS */
+input{
+    padding:12px;
+    font-size:16px;
+    border-radius:8px;
+    border:none;
+    background:white;
+    color:#111;
+}
+input::placeholder{ color:#777; }
+input:focus{ outline:2px solid #1e88e5; }
+
+/* BOTONES GENERALES */
+button{ padding:12px; font-size:16px; border:none; border-radius:8px; cursor:pointer; margin-top:5px; }
+.panel > button{ background:#43a047; color:white; }
+.panel > button:hover{ background:#4caf50; }
+
+/* INICIATIVAS A/B/C/D */
+.iniciativas-panel{ display:flex; flex-direction:column; gap:6px; }
+.iniciativas-titulo{ font-size:14px; color:#bbb; }
+.iniciativa-inputs{ display:flex; gap:5px; width:100%; }
+.ini-input{ flex:1; min-width:0; display:flex; align-items:center; gap:3px; }
+.ini-input span{ color:#bbb; font-size:13px; font-weight:bold; }
+.ini-input input{ width:100%; min-width:0; padding:9px 5px; font-size:14px; }
+
+/* RONDA */
+.ronda-indicador{ color:#1e88e5; font-size:14px; font-weight:bold; margin:5px 0 8px; }
+
+/* CARTAS */
+.card{ background:#1f1f1f; padding:12px; margin:10px 0; border-radius:10px; position:relative; transition:opacity .15s, background .15s; }
+.card.personaje-fuera-combate{ background:#191919; opacity:.58; border:1px dashed #555; }
+.nombre-personaje{ display:block; font-size:18px; font-weight:bold; padding-right:85px; margin-bottom:7px; }
+
+/* INICIATIVA ÚNICA */
+.iniciativa-unica{ color:#aaa; font-size:14px; margin-top:3px; }
+.iniciativa-unica strong{ color:white; }
+
+/* VARIAS INICIATIVAS */
+.selector-iniciativas{ display:flex; gap:5px; width:calc(100% - 45px); margin-bottom:5px; }
+.boton-iniciativa{ flex:1; min-width:0; padding:6px 2px; margin:0; font-size:12px; background:#333; color:white; border:1px solid #555; border-radius:7px; white-space:nowrap; }
+.boton-iniciativa:hover{ background:#444; }
+.boton-iniciativa.seleccionada{ background:#f9a825; color:#111; border-color:#f9a825; font-weight:bold; }
+
+/* DADO */
+.dado-linea{ display:flex; align-items:center; gap:7px; margin-top:5px; }
+.dado-linea span{ color:#bbb; font-size:14px; }
+.dado-linea input{ width:90px; margin-top:10px; }
+
+/* TOTAL Y ADVERTENCIA */
+.total-linea{ font-size:22px; font-weight:bold; margin-top:10px; }
+.warning{ color:#e53935; font-size:12px; margin-top:5px; }
+
+/* BOTÓN RETIRAR / REINCORPORAR */
+.toggle-combate{
+    position:absolute;
+    right:10px;
+    top:9px;
+    width:34px;
+    height:32px;
+    padding:0;
+    margin:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    border:1px solid #555;
+    background:#333;
+    color:white;
+    border-radius:7px;
+}
+.toggle-combate:hover{ filter:brightness(1.2); }
+.toggle-combate.retirar{ background:#6b4b16; border-color:#a97824; }
+.toggle-combate.reincorporar{ background:#246b36; border-color:#3b9953; }
+
+/* PAPELERA */
+.delete{ position:absolute; right:10px; top:50%; transform:translateY(-50%); background:#e53935; color:white; width:38px; height:38px; padding:0; margin:0; display:flex; align-items:center; justify-content:center; }
+.delete:hover{ background:#f44336; }
+
+/* BARRA FIJA */
+#combatBtns{ position:fixed; bottom:0; left:0; right:0; z-index:1000; background:#121212; padding:10px; display:flex; flex-direction:row; gap:8px; border-top:2px solid #333; padding-bottom:calc(10px + env(safe-area-inset-bottom)); }
+.botones-principales{ width:100%; max-width:500px; margin:auto; display:flex; flex-direction:row; gap:8px; }
+#combatBtns button{ flex:1; font-size:14px; padding:12px 6px; margin:0; min-height:52px; }
+.combat.ordenar{ background:#f9a825; color:#111; }
+.combat.ordenar:hover{ background:#ffb300; }
+.combat.iniciar{ background:#1e88e5; color:white; }
+.combat.iniciar:hover{ background:#2196f3; }
+.combat.iniciar.activo{ background:#e53935 !important; color:white; }
+.combat.iniciar.activo:hover{ background:#f44336 !important; }
+.combat.siguiente{ background:#6a1b9a; color:white; }
+.combat.siguiente:hover{ background:#7b1fa2; }
+.activoTurno{ color:#e53935; font-weight:bold; }
+
+/* COMBATE NUEVO */
+.apartado-combate-nuevo{ margin-top:20px; padding-top:10px; border-top:1px solid #333; }
+.combat.nuevo{ width:100%; background:#333; color:white; padding:12px; margin:0; }
+.combat.nuevo:hover{ background:#444; }
+
+/* HISTÓRICO */
+#historico{ margin-top:20px; padding-top:10px; border-top:1px solid #333; }
+#historico h2{ font-size:18px; margin:0 0 10px; }
+.sin-historico{ color:#777; font-size:14px; }
+#historico details{ background:#1f1f1f; border-radius:8px; margin-bottom:7px; overflow:hidden; }
+#historico summary{ padding:12px; cursor:pointer; font-size:15px; font-weight:bold; }
+.historico-ronda{ border-top:1px solid #333; padding:5px 12px 10px; }
+.historico-personaje{ display:flex; justify-content:space-between; align-items:center; padding:5px 0; font-size:14px; color:#ccc; }
+.historico-personaje strong{ color:white; }
+
+/* MÓVILES */
+@media(max-width:380px){
+    .app{ padding:15px; padding-bottom:105px; }
+    h1{ font-size:22px; }
+    #combatBtns{ padding:8px; padding-bottom:calc(8px + env(safe-area-inset-bottom)); }
+    .botones-principales{ gap:5px; }
+    #combatBtns button{ min-height:56px; padding:10px 3px; font-size:13px; }
+    .card{ padding:11px; }
+    .dado-linea input{ width:90px; }
+    .selector-iniciativas{ width:calc(100% - 43px); gap:4px; }
+    .boton-iniciativa{ padding:6px 1px; font-size:11px; }
+    .nombre-personaje{ padding-right:82px; }
+}
